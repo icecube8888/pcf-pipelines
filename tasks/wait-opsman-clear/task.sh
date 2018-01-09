@@ -18,6 +18,7 @@ set -eu
 
 #This script polls ops mgr waiting for pending changes and running installs to be empty before beginning
 #POLL_INTERVAL controls how quickly the script will poll ops mgr for changes to pending changes/running installs
+sudo -- sh -c -e "echo '10.193.59.6\topsmgr.haas-56.pez.pivotal.io' >> /etc/hosts";
 
 POLL_INTERVAL=30
 function main() {
