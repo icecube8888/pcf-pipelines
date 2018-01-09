@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -eu
+sudo -- sh -c -e "echo '10.193.59.6\topsmgr.haas-56.pez.pivotal.io' >> /etc/hosts";
 
 if [[ -n "$NO_PROXY" ]]; then
   echo "$OM_IP $OPSMAN_DOMAIN_OR_IP_ADDRESS" >> /etc/hosts
@@ -27,8 +28,6 @@ if [ -n "$STEMCELL_VERSION" ]; then
   diagnostic_report=$(
     om-linux \
       --target https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
-      --client-id "${OPSMAN_CLIENT_ID}" \
-      --client-secret "${OPSMAN_CLIENT_SECRET}" \
       --username "$OPS_MGR_USR" \
       --password "$OPS_MGR_PWD" \
       --skip-ssl-validation \
@@ -68,8 +67,6 @@ if [ -n "$STEMCELL_VERSION" ]; then
     fi
 
     om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
-      --client-id "${OPSMAN_CLIENT_ID}" \
-      --client-secret "${OPSMAN_CLIENT_SECRET}" \
       -u "$OPS_MGR_USR" \
       -p "$OPS_MGR_PWD" \
       -k \
@@ -81,8 +78,6 @@ fi
 # Should the slug contain more than one product, pick only the first.
 FILE_PATH=`find ./pivnet-product -name *.pivotal | sort | head -1`
 om-linux -t https://$OPSMAN_DOMAIN_OR_IP_ADDRESS \
-  --client-id "${OPSMAN_CLIENT_ID}" \
-  --client-secret "${OPSMAN_CLIENT_SECRET}" \
   -u "$OPS_MGR_USR" \
   -p "$OPS_MGR_PWD" \
   -k \
