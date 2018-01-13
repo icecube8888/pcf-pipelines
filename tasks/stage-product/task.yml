@@ -21,8 +21,7 @@ image_resource:
 
 inputs:
   - name: pcf-pipelines
-  - name: pivnet-product
-
+  
 params:
   OPSMAN_CLIENT_ID:
   OPSMAN_CLIENT_SECRET:
